@@ -49,10 +49,10 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Priority Not Set</h6>
-                    <h5 class="menu-value"><?= $data['countNotSet']['total_test_case_not_set']; ?></h5>
+                    <!-- <h5 class="menu-value"><?= $data['countNotSet']['total_test_case_not_set']; ?></h5> -->
 
                     <!-- read priority not set untuk dashboard page global (belum bekerja, perlu dibenerin-->
-                    <!-- <h5 class="menu-value"><?= $data['totalTestCasesNotSets']['total_test_cases_not_sets']; ?></h5> -->
+                    <h5 class="menu-value"><?= $data['totalNotSet']['total_priority_not_set']; ?></h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="not-set-icon"></div>
@@ -63,7 +63,8 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Priority High</h6>
-                    <h5 class="menu-value"><?= $data['countHigh']['total_test_case_high']; ?></h5>
+                    <!-- <h5 class="menu-value"><?= $data['countHigh']['total_test_case_high']; ?></h5> -->
+                    <h5 class="menu-value"><?= $data['totalHigh']['total_priority_high']; ?></h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="high-icon"></div>
@@ -74,7 +75,8 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Priority Medium</h6>
-                    <h5 class="menu-value"><?= $data['countMedium']['total_test_case_medium']; ?></h5>
+                    <!-- <h5 class="menu-value"><?= $data['countMedium']['total_test_case_medium']; ?></h5> -->
+                    <h5 class="menu-value"><?= $data['totalMedium']['total_priority_medium']; ?></h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="medium-icon"></div>
@@ -85,7 +87,8 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Priority Low</h6>
-                    <h5 class="menu-value"><?= $data['countLow']['total_test_case_low']; ?></h5>
+                    <!-- <h5 class="menu-value"><?= $data['countLow']['total_test_case_low']; ?></h5> -->
+                    <h5 class="menu-value"><?= $data['totalLow']['total_priority_low']; ?></h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="low-icon"></div>

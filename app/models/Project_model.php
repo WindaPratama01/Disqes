@@ -46,17 +46,59 @@ class Project_model extends Database
   }
 
   // function total test cases priority not set untuk dashboard page global (belum bekerja, peru dibenerin)
-  public function getTotalTestCasesNotSets($user_id)
-    {
-        $query = "SELECT COUNT(tc.id) AS total_test_cases_not_sets
+  public function getTotalTestCaseNotSet($user_id)
+  {
+    $query = "SELECT COUNT(tc.id) AS total_priority_not_set
         FROM test_case tc
         INNER JOIN test_section ts ON tc.test_section_id = ts.id
         INNER JOIN project p ON ts.project_id = p.id
-        WHERE p.user_id = :user_id AND tc.priority = 'not set'";
+        WHERE p.user_id = :user_id AND tc.priority = 'Not Set'";
         $this->db->query($query);
         $this->db->bind('user_id', $user_id);
         $this->db->execute();
-        $result = $this->db->resultSingle();
+        return $this->db->resultSingle();
+      }
+      
+  // function total test cases priority high untuk dashboard page global (belum bekerja, peru dibenerin)
+  public function getTotalTestCaseHigh($user_id)
+    {
+        $query = "SELECT COUNT(tc.id) AS total_priority_high
+        FROM test_case tc
+        INNER JOIN test_section ts ON tc.test_section_id = ts.id
+        INNER JOIN project p ON ts.project_id = p.id
+        WHERE p.user_id = :user_id AND tc.priority = 'High'";
+        $this->db->query($query);
+        $this->db->bind('user_id', $user_id);
+        $this->db->execute();
+        return $this->db->resultSingle();
+    }
+
+  // function total test cases priority medium untuk dashboard page global (belum bekerja, peru dibenerin)
+  public function getTotalTestCaseMedium($user_id)
+    {
+        $query = "SELECT COUNT(tc.id) AS total_priority_medium
+        FROM test_case tc
+        INNER JOIN test_section ts ON tc.test_section_id = ts.id
+        INNER JOIN project p ON ts.project_id = p.id
+        WHERE p.user_id = :user_id AND tc.priority = 'Medium'";
+        $this->db->query($query);
+        $this->db->bind('user_id', $user_id);
+        $this->db->execute();
+        return $this->db->resultSingle();
+    }
+
+  // function total test cases priority low untuk dashboard page global (belum bekerja, peru dibenerin)
+  public function getTotalTestCaseLow($user_id)
+    {
+        $query = "SELECT COUNT(tc.id) AS total_priority_low
+        FROM test_case tc
+        INNER JOIN test_section ts ON tc.test_section_id = ts.id
+        INNER JOIN project p ON ts.project_id = p.id
+        WHERE p.user_id = :user_id AND tc.priority = 'Low'";
+        $this->db->query($query);
+        $this->db->bind('user_id', $user_id);
+        $this->db->execute();
+        return $this->db->resultSingle();
     }
 
   // function awal mula
