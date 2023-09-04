@@ -38,7 +38,7 @@
             <div class="card-menu d-flex justify-content-between">
                 <div class="wrapper">
                     <h6 class="menu-title">Test Cases</h6>
-                    <h5 class="menu-value"><?= $data['countTestCase']['total_test_case'] ?></h5>
+                    <h5 class="menu-value"><?= $data['countTestCase']['total_test_case']; ?></h5>
                 </div>
                 <div class="menu-icon d-flex justify-content-center align-items-center">
                     <div class="test-case-icon"></div>

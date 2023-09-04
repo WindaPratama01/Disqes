@@ -169,7 +169,7 @@
                                     <div class="col-10">
                                         <div class="wrapper d-flex align-items-center gap-2">
                                             <p><?= $test_case['test_section_name']; ?></p> |
-                                            <p><?= $test_case['name']; ?></p> 
+                                            <p><?= $test_case['name']; ?></p>
                                         </div>
                                     </div>
                                     <div class="col-2">

@@ -76,6 +76,10 @@ a {
     position: relative;
 }
 
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.24);
+}
+
 p.caption-input {
     font-size: 0.813rem;
     padding: 0 10px;
@@ -155,11 +159,13 @@ p.caption-input {
     padding: 8px 12px;
 }
 
-.input-checkbox {
-    gap: 8px;
+.input-checkbox,
+.input-radio {
+    gap: 6px;
 }
 
-.input-checkbox label {
+.input-checkbox label,
+.input-radio label {
     font-size: 0.938rem;
     color: rgba(var(--dark-color), 1);
 }
@@ -1050,7 +1056,7 @@ h4.title {
     color: rgba(255, 255, 255, 0.86);
 }
 
-.content .card-project .bar-icon {
+.bar-icon {
     width: 5px;
     height: 18px;
     background-image: url('../img/icon/bar-icon.svg');
@@ -1103,7 +1109,7 @@ h4.title {
     background-color: rgba(var(--red-color), 1);
 }
 
-.content .card-project .action-popup {
+.action-popup {
     position: absolute;
     top: 15px;
     right: 0;
@@ -1115,13 +1121,13 @@ h4.title {
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.content .card-project .action-popup.active {
+.action-popup.active {
     top: 30px;
     z-index: 11;
     opacity: 1;
 }
 
-.content .card-project .popup-button {
+.popup-button {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.86);
     padding: 6px 12px;
@@ -1133,7 +1139,7 @@ h4.title {
     text-align: start;
 }
 
-.content .card-project .popup-button:hover {
+.popup-button:hover {
     background-color: rgba(var(--fourth-color), 1);
 }
 

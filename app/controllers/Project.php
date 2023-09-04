@@ -49,8 +49,8 @@ class Project extends Controller
           $this->view('project/dashboard', $data);
           $this->view('templates/footer', $data);
 
-          header("Location: " . BASEURL . "signin");
-          exit;
+          // header("Location: " . BASEURL . "project");
+          // exit;
   }  
 
   public function addAction()

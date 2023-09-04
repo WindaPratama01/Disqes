@@ -7,57 +7,86 @@
         </div>
     </div>
     <div class="row section-gap">
-        <div class="col-12">
-            <h4 class="title">Project</h4>
+        <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
+            <h4 class="title">Projects</h4>
+            <button type="button" class="button-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
+                <div class="add-icon"></div>
+                New
+            </button>
         </div>
     </div>
     <div class="row section-gap">
-        <div class="col-md-4 col-lg-3 mb-4">
-            <button type="button" class="card-project d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
-                <div class="wrapper d-flex flex-column align-items-center">
-                    <div class="plus-icon"></div>
-                    <h5 class="title-add-project">New Project</h5>
+        <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
+            <div class="wrapper-filter">
+                <div class="filter-content">
+                    <form action="" method="POST" style="width: 100%; gap: 12px;" class="d-flex align-items-center">
+                        <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
+                        <div class="row">
+                            <div class="col-12 mt-4 mt-md-0">
+                                <div class="input-wrapper w-100 position-relative">
+                                    <!-- <p class="caption-input">Name <span class="input-required">*</span></p> -->
+                                    <input type="text" class="input position-relative" id="nameInput" name="name" autocomplete="off" required value="" placeholder="Search for Projects" style="padding: 14px 18px;">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="button-primary d-flex align-items-center" style="padding: 14px 18px;">
+                            <div class="search-icon"></div>
+                            Search
+                        </button>
+                    </form>
                 </div>
-            </button>
+            </div>
         </div>
-        <?php $i = 1; ?>
-        <?php foreach ($data['projects'] as $project) : ?>
-            <div class="col-md-4 col-lg-3 mb-4">
-                <div class="card-project d-flex flex-column justify-content-between">
-                    <div class="project-header d-flex align-items-center justify-content-between">
-                        <h6 class="project-title"><?= $project['name'] ?></h6>
-                        <div class="popup-group position-relative">
-                            <div class="wrapper-icon">
-                                <div class="bar-icon"></div>
-                            </div>
-                            <div class="action-popup">
-                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
-                                <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
-                            </div>
-                        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-header d-flex align-items-center">
+                <div class="row align-items-center w-100">
+                    <div class="col">
+                        <p>Name</p>
                     </div>
-                    <div class="project-body d-flex justify-content-between align-items-center">
-                        <div class="wrapper d-flex align-items-center gap-4">
-                            <!-- <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
-                                <div class="testcase-icon"></div>
-                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
-                            </a> -->
-                            <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="testcase-group">
-                                <div class="testsuite-icon"></div>
-                                <p class="badge-count"><?= $project['test_case_count']; ?></p>
-                            </a>
-                            <!-- <a href="<?= BASEURL; ?>testcase" class="testsuite-group">
-                                <div class="testsuite-icon"></div>
-                                <p class="badge-count badge-danger"><?= $project['test_suite_count']; ?></p>
-                            </a> -->
-                        </div>
-                        <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="wrapper-icon">
-                            <div class="dashboard-icon"></div>
-                        </a>
+                    <div class="col d-none d-md-inline-block">
+                        <p>Suite Count</p>
+                    </div>
+                    <div class="col d-none d-md-inline-block">
+                        <p>Case Count</p>
+                    </div>
+                    <div class="col-2">
+                        <p></p>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+
+            <?php $i = 1; ?>
+            <?php foreach ($data['projects'] as $project) : ?>
+                <div class="table-body d-flex align-items-center" style="height: 60px;">
+                    <div class="row align-items-center w-100">
+                        <div class="col">
+                            <p><?= $project['name']; ?></p>
+                        </div>
+                        <div class="col d-none d-md-inline-block">
+                            <p>-</p>
+                        </div>
+                        <div class="col d-none d-md-inline-block">
+                            <p>-</p>
+                        </div>
+                        <div class="col-2 d-flex justify-content-end">
+                            <div class="popup-group position-relative" style="width: fit-content;">
+                                <div class="wrapper-icon">
+                                    <div class="bar-icon"></div>
+                                </div>
+                                <div class="action-popup">
+                                    <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard</a>
+                                    <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="popup-button">Manage</a>
+                                    <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
+                                    <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="addNewProjectLabel" aria-hidden="true">

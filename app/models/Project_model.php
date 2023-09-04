@@ -17,8 +17,7 @@ class Project_model extends Database
     $this->db->execute();
     return $this->db->resultSingle();
   }
-  
-  // function total test suites untuk dashboard page global
+
   public function getTotalTestSuites($user_id)
   {
     $query = "SELECT COUNT(ts.id) AS total_test_suites
@@ -30,8 +29,7 @@ class Project_model extends Database
     $this->db->execute();
     return $this->db->resultSingle();
   }
-  
-  // function total test suites untuk dashboard page global
+
   public function getTotalTestCases($user_id)
   {
     $query = "SELECT COUNT(tc.id) AS total_test_cases
@@ -101,7 +99,6 @@ class Project_model extends Database
         return $this->db->resultSingle();
     }
 
-  // function awal mula
   public function getCountTestSuite($project_id, $user_id)
   {
     $query = "SELECT COUNT(test_suite.id) AS total_test_suite FROM test_suite INNER JOIN project ON test_suite.project_id=project.id WHERE test_suite.project_id=:project_id AND project.user_id=:user_id;";
@@ -171,10 +168,11 @@ class Project_model extends Database
     return $this->db->resultSet();
   }
 
-  public function getProjectFirst()
+  public function getProjectFirst($user_id)
   {
-    $query = "SELECT * FROM project LIMIT 1;";
+    $query = "SELECT * FROM project WHERE user_id=:user_id LIMIT 1;";
     $this->db->query($query);
+    $this->db->bind('user_id', $user_id);
     $this->db->execute();
     return $this->db->resultSingle();
   }
