@@ -8,7 +8,7 @@
     </div>
     <div class="row section-gap">
         <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
-            <h4 class="title">Project</h4>
+            <h4 class="title">Projects</h4>
             <button type="button" class="button-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
                 <div class="add-icon"></div>
                 New
@@ -76,7 +76,7 @@
                                     <div class="bar-icon"></div>
                                 </div>
                                 <div class="action-popup">
-                                    <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard</a>
+                                    <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard </a>
                                     <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="popup-button">Manage</a>
                                     <?php if ($_SESSION['role'] == 'super admin') : ?>
                                         <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#addMemberProject" data-id="<?= $project['id']; ?>">Team Member</button>

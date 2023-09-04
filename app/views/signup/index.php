@@ -41,6 +41,17 @@
                                 <p class="caption-input">Password</p>
                                 <input type="password" class="input position-relative" name="password" autocomplete="off">
                             </div>
+                            <div class="input-wrapper w-100 position-relative">
+                                <!-- <p class="caption-input">Password</p>
+                                <input type="password" class="input position-relative" name="password" autocomplete="off"> -->
+                                <!-- <p>
+                                    <select name="status" id="status" class="custom-select">
+                                        <option value="">Select Role</option>
+                                        <option value="aktif" {{ request('status') == 'aktif' ? 'selected' : '' }}>Member</option>
+                                        <option value="nonaktif" {{ request('status') == 'nonaktif' ? 'selected' : '' }}>Super Admin</option>
+                                    </select>
+                                </p> -->
+                            </div>
                         </div>
                         <div class="wrapper d-flex gap-3">
                             <div class="input-radio d-flex align-items-center">
@@ -54,7 +65,7 @@
                         </div>
                         <button type="submit" class="button-login text-center">Sign up</button>
                     </form>
-                    <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
+                    <!-- <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p> -->
                     <span class="caption-redirect" style="margin-top: 48px;">Already have’an account? <a href="<?= BASEURL; ?>signin" class="link-redirect">Sign in</a></span>
                 </div>
             </div>

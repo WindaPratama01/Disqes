@@ -7,14 +7,14 @@ class Dashboard extends Controller
     if (isset($_SESSION['username'])) {
       $data['title'] = "Dashboard";
       $data['countProject'] = $this->model('Project_model')->getCountProject($_SESSION['user']);
-
-      $data['totalTestSuites'] = $this->model('Project_model')->getTotalTestSuitesUser($_SESSION['user']);
-      $data['totalTestCases'] = $this->model('Project_model')->getTotalTestCasesUser($_SESSION['user']);
-
-      $data['countNotSet'] = $this->model('Project_model')->getCountTestCaseNotSetUser($_SESSION['user']);
-      $data['countHigh'] = $this->model('Project_model')->getCountTestCaseHighUser($_SESSION['user']);
-      $data['countMedium'] = $this->model('Project_model')->getCountTestCaseMediumUser($_SESSION['user']);
-      $data['countLow'] = $this->model('Project_model')->getCountTestCaseLowUser($_SESSION['user']);
+      
+      // code dashboard page global
+      $data['totalTestSuites'] = $this->model('Project_model')->getTotalTestSuites($_SESSION['user']);
+      $data['totalTestCases'] = $this->model('Project_model')->getTotalTestCases($_SESSION['user']);
+      $data['totalNotSet'] = $this->model('Project_model')->getTotalTestCaseNotSet($_SESSION['user']);
+      $data['totalHigh'] = $this->model('Project_model')->getTotalTestCaseHigh($_SESSION['user']);
+      $data['totalMedium'] = $this->model('Project_model')->getTotalTestCaseMedium($_SESSION['user']);
+      $data['totalLow'] = $this->model('Project_model')->getTotalTestCaseLow($_SESSION['user']);
 
       $this->view('templates/header', $data);
       $this->view('dashboard/index', $data);

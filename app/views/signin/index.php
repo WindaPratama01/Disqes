@@ -42,7 +42,7 @@
                         </div>
                         <button type="submit" class="button-login text-center">Sign in</button>
                     </form>
-                    <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
+                    <!-- <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p> -->
                     <span class="caption-redirect" style="margin-top: 48px;">Don’t have an account? <a href="<?= BASEURL; ?>signup" class="link-redirect">Sign up</a></span>
                 </div>
             </div>

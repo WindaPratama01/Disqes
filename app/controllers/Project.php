@@ -22,21 +22,28 @@ class Project extends Controller
   {
     $_SESSION['project'] = $id;
 
-    $data['title'] = "Dashboard";
-    $data['countProject'] = $this->model('Project_model')->getCountProject($_SESSION['user']);
+    Flasher::setFlash('success', 'Successfully created dashboard for a project!');
+          $data['title'] = "Dashboard Project";
+          // $data['projects'] = $this->model('Project_model')->getAllProject($_SESSION['user']);
 
-    $data['totalTestSuites'] = $this->model('Project_model')->getTotalTestSuites($_SESSION['user'], $_SESSION['project']);
-    $data['totalTestCases'] = $this->model('Project_model')->getTotalTestCases($_SESSION['user'], $_SESSION['project']);
+          $data['projects'] = $this->model('Project_model')->getProjectById($id);
+          // $data['projects'] = $this->model('Project_model')->getCountProjectById($id);
 
-    $data['countNotSet'] = $this->model('Project_model')->getCountTestCaseNotSet($_SESSION['project'], $_SESSION['user']);
-    $data['countHigh'] = $this->model('Project_model')->getCountTestCaseHigh($_SESSION['project'], $_SESSION['user']);
-    $data['countMedium'] = $this->model('Project_model')->getCountTestCaseMedium($_SESSION['project'], $_SESSION['user']);
-    $data['countLow'] = $this->model('Project_model')->getCountTestCaseLow($_SESSION['project'], $_SESSION['user']);
+          $data['countTestSuite'] = $this->model('Project_model')->getCountTestSuite($_SESSION['project'], $_SESSION['user']);
+          $data['countTestCase'] = $this->model('Project_model')->getCountTestCase($_SESSION['project'], $_SESSION['user']);
+          $data['countProject'] = $this->model('Project_model')->getCountProject($_SESSION['user']);
+          $data['countNotSet'] = $this->model('Project_model')->getCountTestCaseNotSet($_SESSION['project'], $_SESSION['user']);
+          $data['countHigh'] = $this->model('Project_model')->getCountTestCaseHigh($_SESSION['project'], $_SESSION['user']);
+          $data['countMedium'] = $this->model('Project_model')->getCountTestCaseMedium($_SESSION['project'], $_SESSION['user']);
+          $data['countLow'] = $this->model('Project_model')->getCountTestCaseLow($_SESSION['project'], $_SESSION['user']);
 
-    $this->view('templates/header', $data);
-    $this->view('dashboard/index', $data);
-    $this->view('templates/footer', $data);
-  }
+          $this->view('templates/header', $data);
+          $this->view('project/dashboard', $data);
+          $this->view('templates/footer', $data);
+
+          // header("Location: " . BASEURL . "signin");
+          // exit;
+  }  
 
   public function addAction()
   {
