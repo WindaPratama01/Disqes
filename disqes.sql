@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Agu 2023 pada 04.26
+-- Waktu pembuatan: 04 Sep 2023 pada 04.54
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -31,8 +31,18 @@ CREATE TABLE `project` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `project`
+--
+
+INSERT INTO `project` (`id`, `name`, `description`, `user_id`) VALUES
+(25, 'YouTube', '', '1,6,7'),
+(26, 'WhatsApp', '', '6'),
+(27, 'Gallery', '', '7'),
+(28, 'Facebook', '', '1,7');
 
 -- --------------------------------------------------------
 
@@ -54,6 +64,14 @@ CREATE TABLE `test_case` (
   `project_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `test_case`
+--
+
+INSERT INTO `test_case` (`id`, `name`, `key_case`, `priority`, `behavior`, `precondition`, `instruction`, `expected_result`, `test_suite_id`, `test_section_id`, `project_id`) VALUES
+(51, 'Shorts Movie', 'SS-1', 'Medium', 'Positive', 'Shorts Movie YT', '', '', 34, 34, 25),
+(52, 'Reels Movie', 'RR-2', 'High', 'Negative', 'Reels Movie YT', '', '', 35, 35, 25);
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +84,14 @@ CREATE TABLE `test_section` (
   `test_suite_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `test_section`
+--
+
+INSERT INTO `test_section` (`id`, `name`, `test_suite_id`, `project_id`) VALUES
+(34, 'Shorts YT', 34, 25),
+(35, 'Reels YT', 35, 25);
 
 -- --------------------------------------------------------
 
@@ -80,6 +106,17 @@ CREATE TABLE `test_suite` (
   `project_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `test_suite`
+--
+
+INSERT INTO `test_suite` (`id`, `name`, `description`, `project_id`) VALUES
+(34, 'Shorts', '', 25),
+(35, 'Reels', '', 25),
+(36, 'Video', '', 27),
+(37, 'Foto', '', 27),
+(38, 'Album', '', 27);
+
 -- --------------------------------------------------------
 
 --
@@ -90,16 +127,18 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `role` enum('super admin','member') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`) VALUES
-(1, 'winda pratama', 'winda@gmail.com', '12345'),
-(3, 'putri', 'pratama@gmail.com', '12345');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`) VALUES
+(1, 'winda pratama', 'winda@gmail.com', '101010', 'super admin'),
+(6, 'Mawar', 'mawareva@gmail.com', '12345', 'member'),
+(7, 'Prilly', 'prilly@gmail.com', '12345', 'member');
 
 --
 -- Indexes for dumped tables
@@ -148,31 +187,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `test_case`
 --
 ALTER TABLE `test_case`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `test_section`
 --
 ALTER TABLE `test_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `test_suite`
 --
 ALTER TABLE `test_suite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

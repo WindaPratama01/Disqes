@@ -42,6 +42,16 @@
                                 <input type="password" class="input position-relative" name="password" autocomplete="off">
                             </div>
                         </div>
+                        <div class="wrapper d-flex gap-3">
+                            <div class="input-radio d-flex align-items-center">
+                                <input type="radio" id="admin" name="role" value="super_admin">
+                                <label for="admin">Super Admin</label>
+                            </div>
+                            <div class="input-radio d-flex align-items-center">
+                                <input type="radio" id="member" name="role" value="member">
+                                <label for="member">Member</label>
+                            </div>
+                        </div>
                         <button type="submit" class="button-login text-center">Sign up</button>
                     </form>
                     <p class="caption-login" style="margin-top: 12px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>

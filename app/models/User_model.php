@@ -19,13 +19,35 @@ class User_model extends Database
     return $this->db->resultSingle();
   }
 
+  public function getAllUserMember()
+  {
+    $query = "SELECT * FROM user WHERE role='member';";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
+  public function getAllUserMemberJson($data)
+  {
+    return $this->db->jsonResponse($data);
+  }
+
+  public function getUserMember($data)
+  {
+    $query = "SELECT * FROM user WHERE user.id NOT IN (" . $data['user_id'] . ") AND role='member';";
+    $this->db->query($query);
+    $this->db->execute();
+    return $this->db->resultSet();
+  }
+
   public function insertUserSignup($data)
   {
-    $query = "INSERT INTO user(username,email,password) VALUES(:username,:email,:password)";
+    $query = "INSERT INTO user(username,email,password,role) VALUES(:username,:email,:password,:role)";
     $this->db->query($query);
     $this->db->bind('username', $data['username']);
     $this->db->bind('email', $data['email']);
     $this->db->bind('password', $data['password']);
+    $this->db->bind('role', $data['role']);
     $this->db->execute();
     return $this->db->rowCount();
   }

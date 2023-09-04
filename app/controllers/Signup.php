@@ -15,8 +15,13 @@ class Signup extends Controller
 
   public function signUpAction()
   {
+    if (empty($_POST['role'])) {
+      Flasher::setFlash('danger', 'Select role user first!');
+      header("Location:" . BASEURL . "signup");
+      exit;
+    }
+
     $data['user'] = $this->model('User_model')->getUserByEmail($_POST);
-    var_dump($data['user']);
 
     if (!$data['user']) {
       if ($this->model('User_model')->insertUserSignup($_POST) > 0) {

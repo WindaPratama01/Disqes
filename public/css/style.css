@@ -1110,6 +1110,7 @@ h4.title {
 }
 
 .action-popup {
+    width: 140px;
     position: absolute;
     top: 15px;
     right: 0;

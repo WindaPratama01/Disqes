@@ -46,10 +46,7 @@
                         <p>Name</p>
                     </div>
                     <div class="col d-none d-md-inline-block">
-                        <p>Suite Count</p>
-                    </div>
-                    <div class="col d-none d-md-inline-block">
-                        <p>Case Count</p>
+                        <p>Team Members</p>
                     </div>
                     <div class="col-2">
                         <p></p>
@@ -59,16 +56,19 @@
 
             <?php $i = 1; ?>
             <?php foreach ($data['projects'] as $project) : ?>
-                <div class="table-body d-flex align-items-center" style="height: 60px;">
+                <div class="table-body d-flex align-items-center" style="padding-top: 16px; padding-bottom: 16px;">
                     <div class="row align-items-center w-100">
-                        <div class="col">
+                        <div class="col d-flex align-items-center gap-3">
+                            <img src="https://ui-avatars.com/api/?name=<?= $project['name']; ?>&background=7582eb&color=111827&bold=true" class="img-fluid rounded" alt="Image Project" width="40">
                             <p><?= $project['name']; ?></p>
                         </div>
-                        <div class="col d-none d-md-inline-block">
-                            <p>-</p>
-                        </div>
-                        <div class="col d-none d-md-inline-block">
-                            <p>-</p>
+                        <div class="col d-none d-md-flex gap-2">
+                            <?php $members = explode(',', $project['user_id']); ?>
+                            <?php foreach ($data['users'] as $user) : ?>
+                                <?php if (in_array($user['id'], $members)) : ?>
+                                    <img src="https://ui-avatars.com/api/?name=<?= $user['username'];; ?>&background=192036&color=7582eb&bold=true" class="img-fluid rounded" alt="Image Project" width="40">
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
                         <div class="col-2 d-flex justify-content-end">
                             <div class="popup-group position-relative" style="width: fit-content;">
@@ -78,8 +78,11 @@
                                 <div class="action-popup">
                                     <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard</a>
                                     <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="popup-button">Manage</a>
-                                    <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
-                                    <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
+                                    <?php if ($_SESSION['role'] == 'super admin') : ?>
+                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#addMemberProject" data-id="<?= $project['id']; ?>">Team Member</button>
+                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
+                                        <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#deleteProject" data-id="<?= $project['id']; ?>">Delete</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -116,6 +119,39 @@
                             <button type="button" class="reset-button-add-project button-transparent d-flex align-items-center">
                                 <div class="reset-icon"></div>
                                 Reset
+                            </button>
+                            <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
+                                <div class="cancel-icon"></div>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addMemberProject" tabindex="-1" aria-labelledby="addMemberProjectLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content d-flex flex-column">
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Member Project</h4>
+                    <div class="wrapper-icon" data-bs-dismiss="modal">
+                        <div class="exit-icon"></div>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <form id="formAddMemberProject" method="post" style="width: 100%; gap: 24px;" class="d-flex flex-column">
+                        <input type="hidden" name="id" data-value="id">
+                        <div class="input-wrapper w-100 position-relative">
+                            <p class="caption-input">Add New Member</p>
+                            <select id="newInputAddmember" name="user_id" class="input position-relative">
+                            </select>
+                        </div>
+                        <div class="wrapper d-flex gap-2">
+                            <button type="submit" class="button-primary d-flex align-items-center">
+                                <div class="save-icon"></div>
+                                Save
                             </button>
                             <button type="button" class="button-transparent d-flex align-items-center" data-bs-dismiss="modal">
                                 <div class="cancel-icon"></div>
@@ -199,6 +235,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <script>
+    $(document).on('click', '[data-bs-target="#addMemberProject"]', function() {
+        let id = $(this).data('id');
+        $('#formAddMemberProject').attr('action', 'http://localhost/disqes/public/project/AddMemberProject');
+
+        $('#newInputAddmember').empty();
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/project/memberProject/' + id,
+            success: function(data) {
+                $('#newInputAddmember').append(data);
+            }
+        });
+        $.ajax({
+            type: 'get',
+            url: 'http://localhost/disqes/public/project/edit/' + id,
+            success: function(data) {
+                console.log(data);
+                $('[data-value="id"]').val(data.id);
+            }
+        });
+    });
+
     $(document).on('click', '[data-bs-target="#editProject"]', function() {
         let id = $(this).data('id');
         $('#formEditProject').attr('action', 'http://localhost/disqes/public/project/editAction/' + id);
