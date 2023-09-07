@@ -21,7 +21,7 @@ class User_model extends Database
 
   public function getAllUserMember()
   {
-    $query = "SELECT * FROM user WHERE role='member';";
+    $query = "SELECT * FROM user;";
     $this->db->query($query);
     $this->db->execute();
     return $this->db->resultSet();
@@ -34,7 +34,7 @@ class User_model extends Database
 
   public function getUserMember($data)
   {
-    $query = "SELECT * FROM user WHERE user.id NOT IN (" . $data['user_id'] . ") AND role='member';";
+    $query = "SELECT * FROM user WHERE user.id NOT IN (" . $data['user_id'] . ");";
     $this->db->query($query);
     $this->db->execute();
     return $this->db->resultSet();

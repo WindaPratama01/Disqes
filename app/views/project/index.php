@@ -9,18 +9,22 @@
     <div class="row section-gap">
         <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
             <h4 class="title">Projects</h4>
-            <button type="button" class="button-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
-                <div class="add-icon"></div>
-                New
-            </button>
+            <div class="wrapper d-flex gap-2">
+                <button type="button" class="button-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addNewProject">
+                    <div class="add-icon"></div>
+                    New
+                </button>
+                <a href="<?= BASEURL; ?>/project/exportFile" class="button-primary d-flex align-items-center">
+                    Export File
+                </a>
+            </div>
         </div>
     </div>
     <div class="row section-gap">
         <div class="col-12 d-flex justify-content-md-between align-items-center gap-3 gap-md-0">
             <div class="wrapper-filter">
                 <div class="filter-content">
-                    <form action="" method="POST" style="width: 100%; gap: 12px;" class="d-flex align-items-center">
-                        <input type="hidden" name="project_id" value="<?= $_SESSION['project']; ?>">
+                    <form action="<?= BASEURL; ?>project/filterProject" method="POST" style="width: 100%; gap: 12px;" class="d-flex align-items-center">
                         <div class="row">
                             <div class="col-12 mt-4 mt-md-0">
                                 <div class="input-wrapper w-100 position-relative">
