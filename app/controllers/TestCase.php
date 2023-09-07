@@ -21,6 +21,39 @@ class TestCase extends Controller
     };
   }
 
+  // method export file sesuai project
+  public function exportFileByProject($project_id)
+  {
+      $filename = 'disqes_test_cases_' . date('Ymd') . '.csv';
+      header("Content-Description: File Transfer");
+      header("Content-Disposition: attachment; filename=$filename");
+      header("Content-Type: application/csv; ");
+
+      // Mengambil semua test case yang terkait dengan project_id tertentu
+      $testCases = $this->model('Testcase_model')->getTestCase($project_id);
+
+      $file = fopen('php://output', 'w');
+      $header = array("ID", "Name", "Key Case", "Priority", "Behavior", "Precondition", "Instruction", "Expected Result");
+      fputcsv($file, $header);
+
+      foreach ($testCases as $testCase) {
+          $line = array(
+              $testCase['id'],
+              $testCase['name'],
+              $testCase['key_case'],
+              $testCase['priority'],
+              $testCase['behavior'],
+              $testCase['precondition'],
+              $testCase['instruction'],
+              $testCase['expected_result']
+          );
+          fputcsv($file, $line);
+      }
+
+      fclose($file);
+      exit;
+  }
+
   public function project($project_id)
   {
     $_SESSION['project'] = $project_id;

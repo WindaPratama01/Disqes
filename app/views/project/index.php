@@ -14,9 +14,9 @@
                     <div class="add-icon"></div>
                     New
                 </button>
-                <a href="<?= BASEURL; ?>/project/exportFile" class="button-primary d-flex align-items-center">
+                <!-- <a href="<?= BASEURL; ?>/project/exportFile" class="button-primary d-flex align-items-center">
                     Export File
-                </a>
+                </a> -->
             </div>
         </div>
     </div>
@@ -82,6 +82,7 @@
                                 <div class="action-popup">
                                     <a href="<?= BASEURL; ?>project/data/<?= $project['id']; ?>" class="popup-button">Dashboard </a>
                                     <a href="<?= BASEURL; ?>testcase/project/<?= $project['id']; ?>" class="popup-button">Manage</a>
+                                    <a href="<?= BASEURL; ?>testcase/exportFileByProject/<?= $project['id']; ?>" class="popup-button">Export</a>
                                     <?php if ($_SESSION['role'] == 'super admin') : ?>
                                         <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#addMemberProject" data-id="<?= $project['id']; ?>">Team Member</button>
                                         <button type="button" class="popup-button" data-bs-toggle="modal" data-bs-target="#editProject" data-id="<?= $project['id']; ?>">Edit</button>
