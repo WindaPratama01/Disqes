@@ -127,7 +127,7 @@
             $('#sectionInputAddCase').empty();
             $.ajax({
                 type: 'get',
-                url: 'http://localhost/disqes/public/testcase/getAllTestSection/' + suiteInput,
+                url: 'http://localhost/disqes/testcase/getAllTestSection/' + suiteInput,
                 success: function(data) {
                     $('#sectionInputAddCase').append(data);
                 }

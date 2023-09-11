@@ -445,16 +445,16 @@
 <script>
     $(document).on('click', '[data-bs-target="#addNewSection"]', function() {
         let id = $(this).data('id');
-        $('#formaddNewSection').attr('action', 'http://localhost/disqes/public/testcase/addTestSectionAction/' + id);
+        $('#formaddNewSection').attr('action', 'http://localhost/disqes/testcase/addTestSectionAction/' + id);
         $('[data-value="test_suite_id"]').val(id);
     });
 
     $(document).on('click', '[data-bs-target="#editSection"]', function() {
         let id = $(this).data('id');
-        $('#formEditSection').attr('action', 'http://localhost/disqes/public/testcase/editTestSectionAction/' + id);
+        $('#formEditSection').attr('action', 'http://localhost/disqes/testcase/editTestSectionAction/' + id);
         $.ajax({
             type: 'get',
-            url: 'http://localhost/disqes/public/testcase/editTestSection/' + id,
+            url: 'http://localhost/disqes/testcase/editTestSection/' + id,
             success: function(data) {
                 console.log(data);
                 $('[data-value="id"]').val(data.id);
@@ -465,15 +465,15 @@
 
     $(document).on('click', '[data-bs-target="#deleteSection"]', function() {
         let id = $(this).data('id');
-        $('#formDeleteSection').attr('action', 'http://localhost/disqes/public/testcase/deleteTestSectionAction/' + id);
+        $('#formDeleteSection').attr('action', 'http://localhost/disqes/testcase/deleteTestSectionAction/' + id);
     });
 
     $(document).on('click', '[data-bs-target="#editSuite"]', function() {
         let id = $(this).data('id');
-        $('#formEditSuite').attr('action', 'http://localhost/disqes/public/testcase/editTestSuiteAction/' + id);
+        $('#formEditSuite').attr('action', 'http://localhost/disqes/testcase/editTestSuiteAction/' + id);
         $.ajax({
             type: 'get',
-            url: 'http://localhost/disqes/public/testcase/editTestSuite/' + id,
+            url: 'http://localhost/disqes/testcase/editTestSuite/' + id,
             success: function(data) {
                 $('[data-value="id"]').val(data.id);
                 $('[data-value="name"]').val(data.name);
@@ -484,12 +484,12 @@
 
     $(document).on('click', '[data-bs-target="#deleteSuite"]', function() {
         let id = $(this).data('id');
-        $('#formDeleteSuite').attr('action', 'http://localhost/disqes/public/testcase/deleteTestSuiteAction/' + id);
+        $('#formDeleteSuite').attr('action', 'http://localhost/disqes/testcase/deleteTestSuiteAction/' + id);
     });
 
     $(document).on('click', '[data-bs-target="#deleteCase"]', function() {
         let id = $(this).data('id');
-        $('#formDeleteCase').attr('action', 'http://localhost/disqes/public/testcase/deleteTestCaseAction/' + id);
+        $('#formDeleteCase').attr('action', 'http://localhost/disqes/testcase/deleteTestCaseAction/' + id);
     });
 
     let listMoveCase = document.querySelector('.list-move-case');

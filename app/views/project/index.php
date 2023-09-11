@@ -259,10 +259,10 @@
 
     $(document).on('click', '[data-bs-target="#editProject"]', function() {
         let id = $(this).data('id');
-        $('#formEditProject').attr('action', 'http://localhost/disqes/public/project/editAction/' + id);
+        $('#formEditProject').attr('action', 'http://localhost/disqes/project/editAction/' + id);
         $.ajax({
             type: 'get',
-            url: 'http://localhost/disqes/public/project/edit/' + id,
+            url: 'http://localhost/disqes/project/edit/' + id,
             success: function(data) {
                 $('[data-value="id"]').val(data.id);
                 $('[data-value="name"]').val(data.name);
@@ -273,7 +273,7 @@
 
     $(document).on('click', '[data-bs-target="#deleteProject"]', function() {
         let id = $(this).data('id');
-        $('#formDeleteProject').attr('action', 'http://localhost/disqes/public/project/deleteAction/' + id);
+        $('#formDeleteProject').attr('action', 'http://localhost/disqes/project/deleteAction/' + id);
     });
 
     const tableBody = document.querySelectorAll('.table-body');

@@ -128,7 +128,7 @@
             $('#sectionInputAddCase').empty();
             $.ajax({
                 type: 'get',
-                url: 'http://localhost/disqes/public/testcase/getAllTestSection/' + suiteInput,
+                url: 'http://localhost/disqes/testcase/getAllTestSection/' + suiteInput,
                 success: function(data) {
                     let optionSelect = '<option value="-">Select section</option>';
                     $('#sectionInputAddCase').append(optionSelect, data);
